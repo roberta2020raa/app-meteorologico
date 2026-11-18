@@ -6,87 +6,239 @@
 }
 
 body{
+
     font-family:"Ubuntu", sans-serif;
+    background-image:url("assets/Paisagem\ Anime\ à\ Beira\ do\ Lago\ ensolarado.png");
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+.ensolarado{
+    background-image:url("assets/Paisagem\ Anime\ à\ Beira\ do\ Lago\ ensolarado.png");
+
 }
 
+.nublado{
+    background-image:url("assets/Paisagem\ Serena\ sob\ Céu\ Nublado.png") ;
+}
+
+.tempestade{
+    background-image:url("assets/Paisagem\ Tempestuosa\ à\ Beira\ do\ Lago.png");
+}
+.noite{
+    background-image: url("assets/Lago\ Sereno\ sob\ um\ Céu\ Estrelado.png");
+}
+
+
 .container{
-     display: flex;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-   
     height: 100vh;
     width: 100vw;
-    
+    padding: 2rem;
 }
 
 .wrapper{
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    color:#fdfdfd;
+    position: relative;
+    overflow: hidden;
+}
+.chuva{
+    position:absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.gota{
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background-color: red;
+    top:0;
+    left:50%;
+    animation: cair 2s linear infinite;
+}
+.gota:nth-child(1) {
+    left: 20%;
+}
+.gota:nth-child(2) {
+    left: 50%;
+}
+.gota:nth-child(3) {
+    left: 80%;
+}
+
+.img-menino{
+    width: 288px;
+    height: 360px;
+    background-image: url("assets/menino\ andando\ capa\ verde.png");
+    background-repeat: no-repeat;
+    background-size: 1152px 360px;
+    background-position: 0 0;
+    position: absolute;
+    bottom: -12px;
+    left:100%;
+
+}
+.meninoAmarelo{
+    background-image: url("assets/menino-andando-corrigido.png");
+
+}
+.meninoVerde{
+    background-image: url("assets/menino\ andando\ capa\ verde.png");
+}
+.meninoAzul{
+    background-image:url("assets/menino-andando-guarda-chuva-azul.png") ;
+}
+.meninoCaminhando{
+    animation:
+        caminhar 6s linear forwards,
+        passos 1.2s steps(1,end) infinite;
+}
+
+.img-meninoCapaVerde{
+    width: 288px;
+    height: 360px;
+    background-image: url("assets/menino\ andando\ capa\ verde.png");
+    background-repeat: no-repeat;
+    background-size: 1152px 360px;
+    background-position: 0 0;
+    position: absolute;
+    bottom: -12px;
+    left:50%;
+
+    animation:
+    caminhar 6s linear forwards,
+    passos 1.2s steps(1,end) infinite;
+
+
+}
+
+.meninoParado{
+    animation: none;
+    left:50%;
+    background-position: -288px 0;
+}
+
+
+#title{
+    display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    border:1px solid gray;
+    justify-content: center;
+    color:#fdfdfd;
     padding: 20px;
-    width: 350px;
-    height: 350px;
-    
-    
-   
-}
-
-.box-menor{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
-    margin-top: 20px;
-    
-   
-}
-   
-#location_icon {
-    color:red;
-    
-    
-    
-
-}
-
-
-
-.input-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     
 }
-
-.input-btn input{
-    border-radius:4px ;
-    margin-right: 2px;
-    border: none;
-    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.20);
-    padding: 2px;
-    
-}
-
-.btn-icon{
-    cursor: pointer;
-    border:none;
-    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.20);
-}
-
-
-.box-p{
+.wrapperInternal{
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 90%;
+    width: 50%;
+    padding: 5px;
+}
+
+.location{
+    display: flex;
     align-items: center;
+    padding: 5px;
+    font-size: larger;
+    letter-spacing: .1em;
+}
+.box-temp{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: space-around;
+    width: 90%;
+    height: 90%;
+    padding: 5px;
+}
+#temperature{
+   
+    font-size:4em;
+    font-weight: 500;
     
 }
 .clima{
-    font-weight:bold;
-    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-left: 30px;
+}
+.max-min{
+    font-size: large;
+    font-weight: 400;
+    margin-bottom: 35px;
 }
 
+.input-btn{
+    display: flex;
+    width: 90%;
+}
+
+.input-btn input{
+    padding: .8rem;
+    border: none;
+    flex: 1;
+    border-radius: 4px;
+}
+
+.input-btn button{
+    padding: 0.8rem;
+    min-width:50px;
+    margin-left: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.menino{
+    overflow: hidden;
+}
+
+@keyframes caminhar {
+    0%{
+        left:100%;
+    }
+    100%{
+        left:50%;
+    }
+}
+
+@keyframes passos{
+    0%{
+        background-position: 0 0;
+    }
+    25%{
+        background-position: -288px 0;
+    }
+    50%{
+        background-position:-576px 0 ;
+    }
+    75%{
+        background-position: -864px 0;
+    }
+    100%{
+        background-position: 0 0;
+    }
+}
+
+@keyframes cair {
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(500px);
+    }
+
+}

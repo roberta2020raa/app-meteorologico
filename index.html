@@ -17,29 +17,41 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
     <title>App Tempo</title>
   </head>
   <body>
     <div class="container">
-      <div class="wrapper">
+      <div id="title">
         <h1>Previsão Tempo</h1>
+      </div>
+      <div class="wrapper">
+        <div class="chuva"></div>
+        <div class="wrapperInternal">
+          <div class="location">
+            <i class="fa-solid fa-location-dot" id="location_icon"></i>
+            <h2 id="city">Digite a cidade</h2>
+          </div>
 
-        <div class="box-menor">
-          <i class="fa-solid fa-location-dot" id="location_icon"></i>
-          <h2 id="city">Guarulhos</h2>
-        </div>
+          <div class="box-temp">
+            <div class="box-temp2">
+              <p id="temperature">30&deg;</p>
+              <p id="clima">Nublado</p>
+            </div>
+            <span id="description"
+              >Pancadas de chuvas cedo.Mínima de 19&deg; C.</span
+            >
+            <p class="max-min">Max:15&deg; | Min:7&deg;</p>
+          </div>
 
-        <div class="input-btn">
-          <input type="text" placeholder="Digite a cidade" />
-          <button class="btn-icon">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
+          <div class="input-btn">
+            <input id="cityValue" type="text" placeholder="Digite a cidade" />
+            <button id="buscar">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
         </div>
-
-        <div class="box-p">
-          <p class="clima">Nublado</p>
-          <p class="max-min">Max:15&deg; | Min:7&deg;</p>
-        </div>
+        <div class="img-menino"></div>
       </div>
     </div>
   </body>

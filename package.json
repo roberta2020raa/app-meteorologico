@@ -1,0 +1,28 @@
+﻿{
+    "name":  "app-tempo",
+    "version":  "1.0.0",
+    "description":  "aplicativo para consultar o tempo da cidade",
+    "homepage":  "https://github.com/roberta2020raa/app-meteorologico#readme",
+    "bugs":  {
+                 "url":  "https://github.com/roberta2020raa/app-meteorologico/issues"
+             },
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/roberta2020raa/app-meteorologico.git"
+                   },
+    "license":  "MIT",
+    "author":  "roberta2020raa",
+    "type":  "module",
+    "main":  "backend/server.js",
+    "scripts":  {
+                    "dev":  "nodemon backend/server.js",
+                    "start":  "node backend/server.js"
+                },
+    "dependencies":  {
+                         "dotenv":  "^17.4.2",
+                         "express":  "^5.2.1"
+                     },
+    "devDependencies":  {
+                            "nodemon":  "^3.1.14"
+                        }
+}
