@@ -8,7 +8,7 @@
 body{
 
     font-family:"Ubuntu", sans-serif;
-    background-image:url("assets/Paisagem\ Anime\ à\ Beira\ do\ Lago\ ensolarado.png");
+    background-image:url("assets/dia/dia ensolarado.png");
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -17,35 +17,44 @@ body{
     min-height: 100vh;
 }
 .ensolarado{
-    background-image:url("assets/Paisagem\ Anime\ à\ Beira\ do\ Lago\ ensolarado.png");
+    background-image:url("assets/dia/dia ensolarado.png");
 
 }
 
 .nublado{
-    background-image:url("assets/Paisagem\ Serena\ sob\ Céu\ Nublado.png") ;
+    background-image:url("assets/dia/dia nublado.png") ;
 }
 
 .tempestade{
-    background-image:url("assets/Paisagem\ Tempestuosa\ à\ Beira\ do\ Lago.png");
+    background-image:url("assets/dia/dia com chuva.png");
 }
 .noite{
-    background-image: url("assets/Lago\ Sereno\ sob\ um\ Céu\ Estrelado.png");
+    background-image: url("assets/noite/noite clara.png");
+}
+.chuvaNoite{
+    background-image: url("assets/noite/noite com chuva2.png");
+}
+.noiteNublado{
+    background-image: url("assets/noite/noite nublado.png");
 }
 
 
 .container{
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    padding: 2rem;
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
+    padding: clamp(.75rem, 3vw, 2rem);
 }
 
 .wrapper{
+    --sprite-height: clamp(104px, min(30vw, 28vh), 184px);
+    --ground-offset: clamp(.5rem, 3vh, 2rem);
     display: flex;
-    justify-content: flex-start;
+    flex: 1;
+    justify-content: center;
     align-items: flex-start;
-    height: 100%;
     color:#fdfdfd;
     position: relative;
     overflow: hidden;
@@ -57,75 +66,59 @@ body{
     overflow: hidden;
 }
 
-.gota{
-    position: absolute;
-    width: 2px;
-    height: 20px;
-    background-color: red;
-    top:0;
-    left:50%;
-    animation: cair 2s linear infinite;
-}
-.gota:nth-child(1) {
-    left: 20%;
-}
-.gota:nth-child(2) {
-    left: 50%;
-}
-.gota:nth-child(3) {
-    left: 80%;
-}
-
-.img-menino{
-    width: 288px;
-    height: 360px;
-    background-image: url("assets/menino\ andando\ capa\ verde.png");
+.img-menino,
+.img-meninoCapaVerde{
+    --character-height: calc(var(--sprite-height) * .98);
+    --frame-width: calc(var(--character-height) * .75);
+    --stop-left: calc(42% - var(--frame-width) / 2);
+    --sprite-image: url("assets/menino/menino andando capa verde.png");
+    width: var(--frame-width);
+    height: var(--character-height);
+    background-image: var(--sprite-image),
+        radial-gradient(ellipse, rgb(24 33 27 / .34), transparent 72%);
     background-repeat: no-repeat;
-    background-size: 1152px 360px;
-    background-position: 0 0;
+    background-size: calc(var(--frame-width) * 4) 100%, 82% 10%;
+    background-position: 0 0, center bottom;
+    filter: brightness(.96) saturate(.92);
     position: absolute;
-    bottom: -12px;
+    bottom: calc(var(--ground-offset) + clamp(4px, 1vh, 10px) - 2px);
     left:100%;
-
+    z-index: 1;
+    pointer-events: none;
 }
 .meninoAmarelo{
-    background-image: url("assets/menino-andando-corrigido.png");
+    --frame-width: calc(var(--character-height) * .8);
+    --sprite-image: url("assets/menino/menino-andando-corrigido.png");
 
 }
 .meninoVerde{
-    background-image: url("assets/menino\ andando\ capa\ verde.png");
+    --frame-width: calc(var(--character-height) * .75);
+    --sprite-image: url("assets/menino/menino andando capa verde.png");
 }
 .meninoAzul{
-    background-image:url("assets/menino-andando-guarda-chuva-azul.png") ;
+    --frame-width: calc(var(--character-height) * .75);
+    --sprite-image: url("assets/menino/menino-andando-guarda-chuva-azul.png");
 }
-.meninoCaminhando{
+.meninoVermelho{
+     --frame-width: calc(var(--character-height) * .75);
+     --sprite-image: url("assets/menino/menino andando noite.png");
+}
+
+.meninoFrio{
+    --sprite-image: url("assets/menino/menino andando frio.png");
+}
+
+.meninoCaminhando,
+.img-meninoCapaVerde{
     animation:
         caminhar 6s linear forwards,
         passos 1.2s steps(1,end) infinite;
 }
 
-.img-meninoCapaVerde{
-    width: 288px;
-    height: 360px;
-    background-image: url("assets/menino\ andando\ capa\ verde.png");
-    background-repeat: no-repeat;
-    background-size: 1152px 360px;
-    background-position: 0 0;
-    position: absolute;
-    bottom: -12px;
-    left:50%;
-
-    animation:
-    caminhar 6s linear forwards,
-    passos 1.2s steps(1,end) infinite;
-
-
-}
-
 .meninoParado{
     animation: none;
-    left:50%;
-    background-position: -288px 0;
+    left: var(--stop-left);
+    background-position: calc(-1 * var(--frame-width)) 0, center bottom;
 }
 
 
@@ -139,57 +132,102 @@ body{
     
 }
 .wrapperInternal{
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    height: 90%;
-    width: 50%;
-    padding: 5px;
+    gap: 1rem;
+    width: min(100%, 24rem);
+    padding: clamp(1rem, 3vw, 1.75rem);
+    color: #fdfdfd;
+    background: rgb(15 28 43 / .86);
+    border-radius: 1rem;
+    box-shadow: 0 .5rem 1.5rem rgb(0 0 0 / .2);
 }
 
 .location{
     display: flex;
     align-items: center;
-    padding: 5px;
-    font-size: larger;
-    letter-spacing: .1em;
+    gap: .5rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    overflow-wrap: anywhere;
 }
+.condition-icon{
+    flex: 0 0 clamp(1.5rem, 6vw, 2rem);
+    width: clamp(1.5rem, 6vw, 2rem);
+    height: auto;
+    margin-inline-start: auto;
+    color: #e3ecf5;
+}
+
 .box-temp{
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
-    justify-content: space-around;
-    width: 90%;
-    height: 90%;
-    padding: 5px;
+    gap: .65rem;
 }
 #temperature{
-   
-    font-size:4em;
+    font-size: clamp(3.25rem, 8vw, 5rem);
     font-weight: 500;
-    
+    line-height: 1;
 }
-.clima{
-    font-size: 1.5em;
-    font-weight: 400;
-    margin-left: 30px;
+#clima{
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-top: .25rem;
 }
 .max-min{
+    display: flex;
+    justify-content: space-between;
+    gap: .5rem;
     font-size: large;
     font-weight: 400;
-    margin-bottom: 35px;
+}
+
+.max-min span:last-child{
+    text-align: end;
+}
+
+.weather-divider{
+    border: 0;
+    border-top: 1px solid rgb(227 236 245 / .25);
+}
+
+.weather-detail{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.weather-detail svg{
+    flex: 0 0 1rem;
+    width: 1rem;
+    height: 1rem;
+    color: #e3ecf5;
+}
+
+#description{
+    margin-top: .25rem;
+    font-size: .9375rem;
+    line-height: 1.4;
+    color: #d2deea;
+}
+
+#description:empty,
+.max-min[hidden],
+.weather-detail[hidden]{
+    display: none;
 }
 
 .input-btn{
     display: flex;
-    width: 90%;
+    width: 100%;
 }
 
 .input-btn input{
     padding: .8rem;
     border: none;
     flex: 1;
+    min-width: 0;
     border-radius: 4px;
 }
 
@@ -202,8 +240,78 @@ body{
     border-radius: 4px;
 }
 
+#search-error{
+    color: #ffd1cb;
+    font-size: .875rem;
+    line-height: 1.4;
+}
+
+#search-error:not(:empty){
+    margin-top: .5rem;
+}
+
 .menino{
     overflow: hidden;
+}
+
+@media (max-width: 48rem), (max-height: 32rem) {
+    .wrapper{
+        padding-bottom: calc(var(--sprite-height) + var(--ground-offset) + .75rem);
+    }
+}
+
+@media (max-width: 48rem) {
+    .container{
+        padding-inline: clamp(1rem, 5vw, 1.5rem);
+    }
+
+    #title{
+        padding-block: .75rem;
+        text-align: center;
+    }
+
+    .wrapperInternal{
+        width: min(100%, 23rem);
+        gap: .75rem;
+        padding: clamp(.875rem, 4vw, 1.25rem);
+    }
+
+    .box-temp{
+        gap: .5rem;
+    }
+
+    #temperature{
+        font-size: clamp(2.75rem, 12vw, 3.5rem);
+    }
+
+    #clima{
+        font-size: 1.125rem;
+    }
+
+    .max-min{
+        font-size: .875rem;
+    }
+
+    .input-btn{
+        gap: .5rem;
+    }
+
+    .input-btn input,
+    .input-btn button{
+        min-height: 44px;
+        padding: .5rem .625rem;
+    }
+
+    .input-btn button{
+        flex: 0 0 44px;
+        min-width: 44px;
+        margin-left: 0;
+    }
+
+    .img-menino,
+    .img-meninoCapaVerde{
+        --stop-left: calc(50% - var(--frame-width) / 2);
+    }
 }
 
 @keyframes caminhar {
@@ -211,25 +319,25 @@ body{
         left:100%;
     }
     100%{
-        left:50%;
+        left: var(--stop-left);
     }
 }
 
 @keyframes passos{
     0%{
-        background-position: 0 0;
+        background-position: 0 0, center bottom;
     }
     25%{
-        background-position: -288px 0;
+        background-position: calc(-1 * var(--frame-width)) 0, center bottom;
     }
     50%{
-        background-position:-576px 0 ;
+        background-position: calc(-2 * var(--frame-width)) 0, center bottom;
     }
     75%{
-        background-position: -864px 0;
+        background-position: calc(-3 * var(--frame-width)) 0, center bottom;
     }
     100%{
-        background-position: 0 0;
+        background-position: 0 0, center bottom;
     }
 }
 

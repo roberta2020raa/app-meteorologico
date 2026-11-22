@@ -17,7 +17,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="index.js" defer></script>
+    <script type="module" src="index.js"></script>
     <title>App Tempo</title>
   </head>
   <body>
@@ -31,24 +31,66 @@
           <div class="location">
             <i class="fa-solid fa-location-dot" id="location_icon"></i>
             <h2 id="city">Digite a cidade</h2>
+            <svg class="condition-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <defs>
+                <g id="icon-sun">
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
+                </g>
+                <path id="icon-moon" d="M20.5 15A9 9 0 0 1 9 3.5 9 9 0 1 0 20.5 15Z" />
+                <path id="icon-cloud" d="M6 16a3 3 0 0 1-.3-6 5 5 0 0 1 9.5-.9A3.5 3.5 0 1 1 17 16Z" />
+                <g id="icon-cloud-night">
+                  <path d="M20 4a5 5 0 0 0-4 5M22 9a5 5 0 0 1-2-5" />
+                  <use href="#icon-cloud" transform="translate(0 2)" />
+                </g>
+                <g id="icon-rain">
+                  <use href="#icon-cloud" />
+                  <path id="icon-rain-drops" d="m8 19-1 2m6-2-1 2m6-2-1 2" />
+                </g>
+                <g id="icon-rain-night">
+                  <use href="#icon-cloud-night" transform="translate(0 -1)" />
+                  <use href="#icon-rain-drops" />
+                </g>
+              </defs>
+              <use id="weather-icon" href="#icon-moon" />
+            </svg>
           </div>
 
           <div class="box-temp">
             <div class="box-temp2">
               <p id="temperature">30&deg;</p>
-              <p id="clima">Nublado</p>
+              <p id="clima">Noite</p>
+              <p id="description"></p>
             </div>
-            <span id="description"
-              >Pancadas de chuvas cedo.Mínima de 19&deg; C.</span
-            >
-            <p class="max-min">Max:15&deg; | Min:7&deg;</p>
+            <hr class="weather-divider" />
+            <p class="max-min" id="temperature-range" hidden>
+              <span id="minimum-temperature"></span>
+              <span id="maximum-temperature"></span>
+            </p>
+            <p class="weather-detail">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+                <path d="M10 4C8 7 4 11 4 15a6 6 0 0 0 12 0c0-4-4-8-6-11Z" />
+                <path d="M17 3c2 3 4 5 4 7a3 3 0 0 1-3 3" />
+              </svg>
+              <span id="humidity">Umidade: --%</span>
+            </p>
+            <p class="weather-detail" id="local-time-row" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 2" />
+              </svg>
+              <span id="local-time"></span>
+            </p>
           </div>
 
-          <div class="input-btn">
-            <input id="cityValue" type="text" placeholder="Digite a cidade" />
-            <button id="buscar">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+          <div>
+            <div class="input-btn">
+              <input id="cityValue" type="text" placeholder="Digite a cidade" />
+              <button id="buscar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+            <p id="search-error" aria-live="polite" aria-atomic="true"></p>
           </div>
         </div>
         <div class="img-menino"></div>
